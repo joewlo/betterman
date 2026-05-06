@@ -32,6 +32,29 @@
   --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
 }
 
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #e2e8f0;
+  --bg-surface: #f1f5f9;
+  --bg-input: #ffffff;
+  --border: #cbd5e1;
+  --border-light: #e2e8f0;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-subtle: rgba(99, 102, 241, 0.08);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-track: #f1f5f9;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
 * {
   margin: 0;
   padding: 0;

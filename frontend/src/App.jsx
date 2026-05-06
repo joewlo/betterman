@@ -7,7 +7,24 @@ import RequestPanel from './components/RequestPanel'
 import ResponsePanel from './components/ResponsePanel'
 import ImportDialog from './components/ImportDialog'
 
+const THEME_KEY = 'betterman-theme'
+
+function getSystemTheme() {
+  if (typeof window === 'undefined') return 'dark'
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+}
+
+function getStoredTheme() {
+  try { return localStorage.getItem(THEME_KEY) } catch { return null }
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme)
+  try { localStorage.setItem(THEME_KEY, theme) } catch { /* noop */ }
+}
+
 export default function App() {
+  const [theme, setTheme] = useState(() => getStoredTheme() || getSystemTheme())
   const [collections, setCollections] = useState([])
   const [environments, setEnvironments] = useState([])
   const [activeEnvId, setActiveEnvId] = useState(null)
@@ -19,6 +36,14 @@ export default function App() {
   const [showImport, setShowImport] = useState(false)
   const [showEnvEditor, setShowEnvEditor] = useState(false)
   const [editingEnv, setEditingEnv] = useState(null)
+
+  useEffect(() => {
+    applyTheme(theme)
+  }, [theme])
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
+  }
 
   const loadData = useCallback(async () => {
     try {
@@ -103,6 +128,8 @@ export default function App() {
         activeEnvId={activeEnvId}
         onSelectEnv={setActiveEnvId}
         onManage={(env) => { setEditingEnv(env); setShowEnvEditor(true) }}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
       <div className="app-body">
         <Sidebar

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function EnvironmentBar({ environments, activeEnvId, onSelectEnv, onManage }) {
+export default function EnvironmentBar({ environments, activeEnvId, onSelectEnv, onManage, theme, onToggleTheme }) {
   return (
     <div className="env-bar">
       <label>Environment:</label>
@@ -25,6 +25,9 @@ export default function EnvironmentBar({ environments, activeEnvId, onSelectEnv,
         </button>
       )}
       <span className="spacer" />
+      <button onClick={onToggleTheme} title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
+        {theme === 'dark' ? '\u2600' : '\u263D'}
+      </button>
       <span className="env-count">{environments.length} environment{environments.length !== 1 ? 's' : ''}</span>
     </div>
   )

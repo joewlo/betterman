@@ -5,18 +5,20 @@ A lightweight, local Postman alternative. Build, save, and run API requests with
 ## Quick Start
 
 ```bash
+# One command
+./scripts/launch.sh
+
+# Or manually:
 # Terminal 1: Backend API
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
+cd backend && pip install -r requirements.txt && uvicorn main:app --reload --port 8000
 
 # Terminal 2: Frontend UI
-cd frontend
-npm install
-npm run dev
+cd frontend && npm install && npm run dev
 ```
 
 Open **http://localhost:5173** — the frontend proxies API calls to port 8000.
+
+Click the sun/moon icon in the top bar to toggle between dark and light mode.
 
 ## Features
 
@@ -26,6 +28,7 @@ Open **http://localhost:5173** — the frontend proxies API calls to port 8000.
 - **Auth Helpers** — bearer, basic, API key, digest, OAuth 2.0
 - **Variable Resolution** — `{{var}}` resolved recursively: session → environment → collection → global
 - **Pre/Post Scripts** — Python scripts with `response.json()`, `extract_var()`, `env()`, `log()`
+- **Dark / Light Mode** — toggle in top bar, auto-detects system preference
 - **Response Viewers** — JSON tree (collapsible, copy-path), Markdown, HTML, XML, CSV, images, raw
 - **Import** — paste curl commands or Postman v2.1 collections
 - **Export** — any request as curl
@@ -120,5 +123,7 @@ betterman/
 │   │           └── RawViewer.jsx
 │   ├── package.json
 │   └── vite.config.js
+├── scripts/
+│   └── launch.sh            # Starts backend + frontend in one command
 └── start.sh
 ```
